@@ -1,6 +1,7 @@
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GoPencil } from "react-icons/go";
+import { formatDate } from "../utils/formatDate";
 
 const Task = ({ task, moveTask, nextStatus, setCurrentTask, deleteTasks }) => {
   return (
@@ -27,7 +28,10 @@ const Task = ({ task, moveTask, nextStatus, setCurrentTask, deleteTasks }) => {
           </div>
         </div>
         {task.status === "Completed" && (
-          <p>Completed at: {new Date(task.completedAt).toLocaleString()}</p>
+          //   <p>Completed at: {new Date(task.completedAt).toLocaleString()}</p>
+          <p className="timestamp">
+            Completed at:- {formatDate(task.completedAt)}
+          </p>
         )}
         <div>
           {nextStatus && (
