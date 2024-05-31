@@ -12,11 +12,13 @@ const Task = ({ task, moveTask, nextStatus, setCurrentTask, deleteTasks }) => {
             <p>{task.description}</p>
           </div>
           <div className="icons">
-            <GoPencil
-              color="#72A0C1"
-              onClick={() => setCurrentTask(task)}
-              style={{ cursor: "pointer" }}
-            />
+            {task.status !== "Completed" && (
+              <GoPencil
+                color="#72A0C1"
+                onClick={() => setCurrentTask(task)}
+                style={{ cursor: "pointer" }}
+              />
+            )}
             <RiDeleteBin6Line
               color="red"
               onClick={() => deleteTasks(task.id)}
