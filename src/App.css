@@ -86,8 +86,20 @@ button:hover {
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
+.contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2px;
+}
+.icons {
+  display: flex;
+  gap: 3px;
+}
 .task h3 {
   margin: 0 0 5px;
 }
@@ -99,4 +111,16 @@ button:hover {
 .task .timestamp {
   font-size: 0.9em;
   color: #777;
+}
+
+@media (max-width: 768px) {
+  .task-list {
+    max-width: 100%;
+    flex: 100%;
+  }
+  .task-sections {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 }
