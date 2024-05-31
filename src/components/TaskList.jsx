@@ -27,9 +27,11 @@ const TaskList = ({
               index={index}
             >
               {(provided) => (
-                <div ref={provided.innerRef}>
+                <div
+                  ref={provided.innerRef}
                   {...provided.dragHandleProps}
                   {...provided.draggableProps}
+                >
                   <Task
                     task={task}
                     key={index}
