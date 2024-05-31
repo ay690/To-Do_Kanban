@@ -33,6 +33,11 @@ function App() {
     setCurrentTask(null);
   };
 
+  const deleteTasks = (id) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+  }
+
   const clearCurrentTask = () => {
     setCurrentTask(null);
   };
@@ -55,6 +60,7 @@ function App() {
           moveTask={moveTask}
           nextStatus="In Progress"
           setCurrentTask={setCurrentTask}
+          deleteTasks={deleteTasks}
         />
         <TaskList
           title={"In Progress"}
@@ -62,12 +68,14 @@ function App() {
           moveTask={moveTask}
           nextStatus="Completed"
           setCurrentTask={setCurrentTask}
+          deleteTasks={deleteTasks}
         />
         <TaskList
           title={"Completed"}
           tasks={tasks.filter((task) => task.status === "Completed")}
           moveTask={moveTask}
           setCurrentTask={setCurrentTask}
+          deleteTasks={deleteTasks}
         />
       </div>
     </div>

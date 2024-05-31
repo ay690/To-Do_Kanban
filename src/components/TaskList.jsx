@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ title, tasks, moveTask, nextStatus, setCurrentTask }) => {
+const TaskList = ({ title, tasks, moveTask, nextStatus, setCurrentTask, deleteTasks }) => {
   return (
     <div className="task-list">
       <h2>{title}</h2>
@@ -12,6 +12,7 @@ const TaskList = ({ title, tasks, moveTask, nextStatus, setCurrentTask }) => {
           moveTask={moveTask}
           nextStatus={nextStatus}
           setCurrentTask={setCurrentTask}
+          deleteTasks={deleteTasks}
         />
       ))}
     </div>

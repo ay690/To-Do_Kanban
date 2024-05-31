@@ -2,7 +2,7 @@ import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GoPencil } from "react-icons/go";
 
-const Task = ({ task, moveTask, nextStatus, setCurrentTask }) => {
+const Task = ({ task, moveTask, nextStatus, setCurrentTask, deleteTasks }) => {
   return (
     <>
       <div className="task">
@@ -17,7 +17,11 @@ const Task = ({ task, moveTask, nextStatus, setCurrentTask }) => {
               onClick={() => setCurrentTask(task)}
               style={{ cursor: "pointer" }}
             />
-            <RiDeleteBin6Line color="red" style={{ cursor: "pointer" }} />
+            <RiDeleteBin6Line
+              color="red"
+              onClick={() => deleteTasks(task.id)}
+              style={{ cursor: "pointer" }}
+            />
           </div>
         </div>
         {task.status === "Completed" && (
