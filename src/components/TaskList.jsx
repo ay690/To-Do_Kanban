@@ -20,30 +20,41 @@ const TaskList = ({
           {...provided.droppableProps}
         >
           <h2>{title}</h2>
-          {tasks.map((task, index) => (
-            <Draggable
-              key={task.id}
-              draggableId={task.id.toString()}
-              index={index}
-            >
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.dragHandleProps}
-                  {...provided.draggableProps}
-                >
-                  <Task
-                    task={task}
-                    key={index}
-                    moveTask={moveTask}
-                    nextStatus={nextStatus}
-                    setCurrentTask={setCurrentTask}
-                    deleteTasks={deleteTasks}
-                  />
-                </div>
-              )}
-            </Draggable>
-          ))}
+          {tasks.map((task, index) =>
+            task.status !== "Completed" ? (
+              <Draggable
+                key={task.id}
+                draggableId={task.id.toString()}
+                index={index}
+              >
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.dragHandleProps}
+                    {...provided.draggableProps}
+                  >
+                    <Task
+                      task={task}
+                      moveTask={moveTask}
+                      nextStatus={nextStatus}
+                      setCurrentTask={setCurrentTask}
+                      deleteTasks={deleteTasks}
+                    />
+                  </div>
+                )}
+              </Draggable>
+            ) : (
+              <div key={task.id}>
+                <Task
+                  task={task}
+                  moveTask={moveTask}
+                  nextStatus={nextStatus}
+                  setCurrentTask={setCurrentTask}
+                  deleteTasks={deleteTasks}
+                />
+              </div>
+            )
+          )}
           {provided.placeholder}
         </div>
       )}
