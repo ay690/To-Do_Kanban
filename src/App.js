@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { TaskForm, TaskList } from "./components";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -6,6 +6,25 @@ import { DragDropContext } from "react-beautiful-dnd";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState(null);
+
+  const saveTasksToLocalStorage = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const loadTasksFromLocalStorage = () => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    if (storedTasks) {
+      setTasks(storedTasks);
+    }
+  };
+
+  useEffect(() => {
+    loadTasksFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    saveTasksToLocalStorage(tasks);
+  }, [tasks]);
 
   const addTask = (title, description) => {
     const newTask = { id: Date.now(), title, description, status: "Pending" };
