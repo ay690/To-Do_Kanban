@@ -2,6 +2,10 @@
 
 This is a Kanban board To-do list featuring three sections: 'Pending,' 'In Progress,' and 'Completed.' Users can seamlessly edit and delete tasks. The app boasts drag-and-drop functionality facilitated by 'react-beautiful-dnd.' Additionally, it is fully responsive, ensuring a smooth experience across various devices.
 
+# Deployed Link
+
+[https://todo-kanban-greenstitch.netlify.app/]
+
 # Tech-Stack
 
 Reactjs, Javascript, HTML, CSS
