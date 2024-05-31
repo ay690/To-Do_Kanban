@@ -22,7 +22,7 @@ react-beautiful-dnd
 
 <img src="/src/assets/todo3.png" />
 
-<img src="/src/assets/todo4.png" />
+<img src="/src/assets/todo4.jpg" />
 
 # Instructions
 
