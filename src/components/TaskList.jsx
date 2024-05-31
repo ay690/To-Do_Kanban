@@ -19,7 +19,9 @@ const TaskList = ({
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
-          <h2>{title}</h2>
+          <h2>
+            {title} ({tasks?.length})
+          </h2>
           {tasks.map((task, index) =>
             task.status !== "Completed" ? (
               <Draggable
