@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { TaskForm, TaskList } from "./components";
+import { DragDropContext } from "react-beautiful-dnd";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -36,13 +37,33 @@ function App() {
   const deleteTasks = (id) => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
-  }
+  };
 
   const clearCurrentTask = () => {
     setCurrentTask(null);
   };
 
-  console.log(tasks);
+  // console.log(tasks);
+
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+
+    if (source.droppableId === destination.droppableId) return;
+
+    const taskId = parseInt(result.draggableId);
+    let newStatus;
+
+    if (destination.droppableId === "Pending") {
+      newStatus = "Pending";
+    } else if (destination.droppableId === "InProgress") {
+      newStatus = "In Progress";
+    } else if (destination.droppableId === "Completed") {
+      newStatus = "Completed";
+    }
+
+    moveTask(taskId, newStatus);
+  };
 
   return (
     <div className="app">
@@ -53,31 +74,36 @@ function App() {
         currentTask={currentTask}
         clearCurrentTask={clearCurrentTask}
       />
-      <div className="task-sections">
-        <TaskList
-          title={"Pending"}
-          tasks={tasks.filter((task) => task.status === "Pending")}
-          moveTask={moveTask}
-          nextStatus="In Progress"
-          setCurrentTask={setCurrentTask}
-          deleteTasks={deleteTasks}
-        />
-        <TaskList
-          title={"In Progress"}
-          tasks={tasks.filter((task) => task.status === "In Progress")}
-          moveTask={moveTask}
-          nextStatus="Completed"
-          setCurrentTask={setCurrentTask}
-          deleteTasks={deleteTasks}
-        />
-        <TaskList
-          title={"Completed"}
-          tasks={tasks.filter((task) => task.status === "Completed")}
-          moveTask={moveTask}
-          setCurrentTask={setCurrentTask}
-          deleteTasks={deleteTasks}
-        />
-      </div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="task-sections">
+          <TaskList
+            title={"Pending"}
+            tasks={tasks.filter((task) => task.status === "Pending")}
+            moveTask={moveTask}
+            nextStatus="In Progress"
+            setCurrentTask={setCurrentTask}
+            deleteTasks={deleteTasks}
+            droppableId="Pending"
+          />
+          <TaskList
+            title={"In Progress"}
+            tasks={tasks.filter((task) => task.status === "In Progress")}
+            moveTask={moveTask}
+            nextStatus="Completed"
+            setCurrentTask={setCurrentTask}
+            deleteTasks={deleteTasks}
+            droppableId="InProgress"
+          />
+          <TaskList
+            title={"Completed"}
+            tasks={tasks.filter((task) => task.status === "Completed")}
+            moveTask={moveTask}
+            setCurrentTask={setCurrentTask}
+            deleteTasks={deleteTasks}
+            droppableId="Completed"
+          />
+        </div>
+      </DragDropContext>
     </div>
   );
 }
