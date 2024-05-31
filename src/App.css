@@ -58,3 +58,45 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.task-sections {
+  display: flex;
+  gap: 20px;
+  /* flex-wrap: wrap; */
+}
+
+.task-list {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  min-width: 250px;
+  max-width: 33%;
+  box-sizing: border-box;
+}
+.task-list h2 {
+  text-align: center;
+}
+
+.task {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.task h3 {
+  margin: 0 0 5px;
+}
+
+.task p {
+  margin: 0 0 10px;
+}
+
+.task .timestamp {
+  font-size: 0.9em;
+  color: #777;
+}
